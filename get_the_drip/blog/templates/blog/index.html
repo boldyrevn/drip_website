@@ -1,6 +1,23 @@
-{% extends "blog/base.html" %}
+{% extends 'blog/base.html' %}
 
-{% block content %}
-    <h1>Welcome to the coolest drip blog in Russia!</h1>
-    <p>Here you can find convenient advices to get your own DRIP</p>
+{% block aside %}
+    <ul class="list-categories">
+        {% for category in categories %}
+            <li><a href="">{{ category }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block main-content %}
+    <h1>Publications</h1>
+    <section class="pulications">
+    {% for p in publications %}
+        <section class="publication">
+            <h2 class="publication-title">{{ p.title }}</h2>
+            <p>{{ p.content|linebreaks|truncatewords:50 }}</p>
+            <a href="{{ p.get_absolute_url }}"><button>Читать пост</button></a>
+            <hr>
+        </section>
+    {% endfor %}
+    </section>
 {% endblock %}

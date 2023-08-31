@@ -1,6 +1,13 @@
-{% extends "blog/base.html" %}
+{% extends 'blog/base.html' %}
 
-{% block content %}
-    <h1>About us</h1>
-    <p>WE are the most influential DRIP blog in MSK</p>
+{% block aside %}
+    <ul class="list-categories">
+        {% for section in sections %}
+            <li><a href="">{{ section }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block main-content %}
+    <h1>"About our amazing blog"</h1>
 {% endblock %}

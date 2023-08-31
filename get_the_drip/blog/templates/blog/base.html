@@ -1,18 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'blog/images/shirt.png' %}">
 </head>
 <body>
-<header>
-    <ul>
-        {% for elem in menu %}
-            <li>{{ elem }}</li>
-        {% endfor %}
-    </ul>
-</header>
-{% block content %}
-{% endblock %}
+    <header>
+        <p class="logo-text">
+            <a href="{% url 'main' %}">Get the DRIP</a>
+        </p>
+        <ul class="header-links">
+            {% for link in header_links %}
+                <li><a href="{% url link.url_name %}" class="header-link">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'login' %}" class="login-link"><button>Войти</button></a>
+    </header>
+    <main>
+        <aside>
+            {% block aside %}
+            {% endblock %}
+        </aside>
+        <section class="main-content">
+            {% block main-content %}
+            {% endblock %}
+        </section>
+    </main>
+    <footer></footer>
 </body>
 </html>
