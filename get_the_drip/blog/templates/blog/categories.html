@@ -1,0 +1,14 @@
+<ul class="list-categories">
+{% if selected_category == 0 %}
+    <li class="selected">All categories</li>
+{% else %}
+    <li><a href="{% url 'main' %}">All categories</a></li>
+{% endif %}
+{% for category in categories %}
+    {% if category.pk == selected_category %}
+    <li class="selected">{{ category.name }}</li>
+    {% else %}
+    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>

@@ -1,11 +1,8 @@
 {% extends 'blog/base.html' %}
+{% load blog_cats %}
 
 {% block aside %}
-    <ul class="list-categories">
-        {% for category in categories %}
-            <li><a href="">{{ category }}</a></li>
-        {% endfor %}
-    </ul>
+    {% show_categories cat_id=selected_category %}
 {% endblock %}
 
 {% block main-content %}
@@ -13,6 +10,10 @@
     <section class="pulications">
     {% for p in publications %}
         <section class="publication">
+            <div class="pub-info">
+                <span>Category: {{ p.cat }}</span>
+                <span>Date: {{ p.time_update|date:'Y.m.d H:i' }}</span>
+            </div>
             <h2 class="publication-title">{{ p.title }}</h2>
             <p>{{ p.content|linebreaks|truncatewords:50 }}</p>
             <a href="{{ p.get_absolute_url }}"><button>Читать пост</button></a>

@@ -88,8 +88,13 @@ ul.list-categories > li {
     margin-bottom: 30px;
 }
 
-ul.list-categories > li a:focus {
+ul.list-categories > li.selected {
     color: rgb(37, 37, 37);
+    font-weight: bold;
+}
+
+ul.list-categories > li:not(.selected):hover {
+    font-weight: 600;
 }
 
 section.main-content h1 {
@@ -124,4 +129,18 @@ section.publication button {
 section.publication hr {
     clear: both;
     border: 1px solid black;
+}
+
+div.pub-info {
+    background-color: rgb(226, 198, 183);
+    font-size: 1rem;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+div.pub-info span {
+    color: rgb(66, 65, 65);
+    font-size: 1rem;
 }

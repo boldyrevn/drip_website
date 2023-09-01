@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse
-from .models import Publication
+from django.http import HttpRequest, HttpResponse, Http404
+from .models import Publication, Category
 
 header_links = [
     {'title': 'About us', 'url_name': 'about'},
     {'title': 'Add publication', 'url_name': 'add_pub'},
     {'title': 'Feedback', 'url_name': 'feedback'}
 ]
-
-categories = ['Street style', 'Classic', 'Urban bitch', 'Gay hunter']
 
 
 def about_page(request: HttpRequest):
@@ -22,9 +20,24 @@ def main_page(request: HttpRequest):
     publications = Publication.objects.all()
     return render(request, "blog/index.html", context={
         'title': "Get the DRIP",
-        'categories': categories,
         'publications': publications,
-        'header_links': header_links
+        'header_links': header_links,
+        'selected_category': 0
+    })
+
+
+def show_category(request: HttpRequest, cat_id: int):
+    publications = Publication.objects.filter(cat_id=cat_id)
+    categories = Category.objects.all()
+
+    if cat_id not in map(lambda cat: cat.id, categories):
+        raise Http404()
+
+    return render(request, "blog/index.html", context={
+        'title': "Get the DRIP",
+        'publications': publications,
+        'header_links': header_links,
+        'selected_category': cat_id
     })
 
 
