@@ -112,6 +112,10 @@ section.publication h2 {
     margin-bottom: 8px;
 }
 
+section.publication h1 {
+    margin-bottom: 25px;
+}
+
 section.publication p {
     text-align: justify;
     font-size: 1rem;
@@ -143,4 +147,58 @@ div.pub-info {
 div.pub-info span {
     color: rgb(66, 65, 65);
     font-size: 1rem;
+}
+
+.main-content form label {
+    display: inline-block;
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.main-content form input {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.main-content form ul {
+    font-weight: bold;
+    display: inline-block;
+    list-style-type: none;
+    color: darkred;
+    margin-bottom: 20px;
+}
+
+ul.page-list {
+    max-width: 70%;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+ul.page-list li {
+    margin: 0 15px;
+    display: flex;
+    width: 3em;
+    height: 3em;
+    border: 1px solid black;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.page-list li:hover {
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid black;
+}
+
+a.auth:hover {
+    text-decoration: underline;
+}
+
+.publication button {
+    background-color: rgb(236, 234, 233);
+    border: 1px solid rgba(61, 61, 61, 0.525);
+    border-radius: 5px;
 }

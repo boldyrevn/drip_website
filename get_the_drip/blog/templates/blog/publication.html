@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load blog_cats %}
+
+{% block main-content %}
+    <section class="publication">
+        <h1>{{ p.title }}</h1>
+        <div class="pub-info">
+            <span>Date: {{ p.time_update|date:'Y.m.d H:i' }}</span>
+        </div>
+        <p>{{ p.content|linebreaks }}</p>
+    </section>
+{% endblock %}

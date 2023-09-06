@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +19,41 @@
                 <li><a href="{% url link.url_name %}" class="header-link">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
-        <a href="{% url 'login' %}" class="login-link"><button>Войти</button></a>
+        <div>
+            <a href="{% url 'login' %}" class="header-link auth">Войти</a>
+            |
+            <a href="{% url 'register' %}" class="header-link auth">Зарегаться</a>
+        </div>
     </header>
     <main>
         <aside>
             {% block aside %}
+                <ul class="list-categories">
+                {% if selected_category == '' %}
+                    <li class="selected">All categories</li>
+                {% else %}
+                    <li><a href="{% url 'main' %}">All categories</a></li>
+                {% endif %}
+                {% for category in categories %}
+                    {% if category.slug == selected_category %}
+                    <li class="selected">{{ category.name }}</li>
+                    {% else %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
             {% endblock %}
         </aside>
         <section class="main-content">
             {% block main-content %}
             {% endblock %}
+            <nav>
+                <ul class="page-list">
+                    {% for p in paginator.page_range %}
+                        <a href="?page={{ p }}"><li>{{ p }}</li></a>
+                    {% endfor %}
+                </ul>
+            </nav>
         </section>
     </main>
     <footer></footer>
